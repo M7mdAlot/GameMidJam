@@ -1,7 +1,6 @@
-using System.Collections;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerMovementNew : MonoBehaviour
 {
@@ -9,9 +8,6 @@ public class PlayerMovementNew : MonoBehaviour
     private float baseSpeed;
     private bool jumpPressed = false;
     public Transform CameraTarget;
-    public float normalDistance = -3f;
-    public float topDistance = -1f;
-    public float zoomSpeed = 5f;
     public float rotationSpeed = 100f;
     private float verticalRotation = 0f;
     public Animator animator;
@@ -40,11 +36,13 @@ public class PlayerMovementNew : MonoBehaviour
     {
         IsGrounded = characterController.isGrounded;
 
+        CameraTarget.position = transform.position;
+
         CameraTarget.Rotate(Vector3.up * LookInput.x * rotationSpeed * Time.deltaTime);
         verticalRotation -= LookInput.y * rotationSpeed * Time.deltaTime;
         verticalRotation = Mathf.Clamp(verticalRotation, -20f, 35f);
         CameraTarget.localEulerAngles = new Vector3(verticalRotation, CameraTarget.localEulerAngles.y, 0f);
-     
+
         float Horizontal = MoveInput.x;
         float Vertical = MoveInput.y;
         Vector3 camForward = CameraTarget.forward;
