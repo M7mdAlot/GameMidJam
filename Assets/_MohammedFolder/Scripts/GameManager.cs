@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public PlayerMovementNew PlayerMovement;
     public float CaughtFreezeTime = 1.5f;
+    public bool CanDoubleJump = false;
+    public bool CanDash = false;
+    public bool CanSprint = false;
 
     private Vector3 checkpointPosition;
     private bool isCaught = false;

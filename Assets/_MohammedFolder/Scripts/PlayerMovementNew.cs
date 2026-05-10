@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerMovementNew : MonoBehaviour
 {
     public float Speed = 5f;
+    public float dashSpeed = 20f;
     private float baseSpeed;
     private bool jumpPressed = false;
     public Transform CameraTarget;
@@ -105,9 +106,12 @@ public class PlayerMovementNew : MonoBehaviour
     {
         if (context.started)
         {
+
             jumpPressed = true;
             if (JumpCount < JumpLimit)
             {
+                if (JumpCount >= 1 && !GameManager.Instance.CanDoubleJump) return;
+
                 if (!IsGrounded && JumpCount == 0)
                 {
                     JumpCount++;
@@ -124,7 +128,7 @@ public class PlayerMovementNew : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && !IsDashing)
+        if (context.started && !IsDashing && GameManager.Instance.CanDash)
         {
             StartCoroutine(Dash());
         }
@@ -134,7 +138,6 @@ public class PlayerMovementNew : MonoBehaviour
     {
         if (IsDashing) yield break;
         IsDashing = true;
-        float dashSpeed = 20f;
         float dashDuration = 0.2f;
         float elapsed = 0f;
         int AirDashLimit = 1;
@@ -167,7 +170,7 @@ public class PlayerMovementNew : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && GameManager.Instance.CanSprint)
             Speed = baseSpeed * 2;
         if (context.canceled)
             Speed = baseSpeed;
