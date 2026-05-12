@@ -6,7 +6,7 @@ public class PlayerMovementNew : MonoBehaviour
 {
     public float Speed = 5f;
     public float dashSpeed = 20f;
-    private float baseSpeed;
+    public float baseSpeed;
     private bool jumpPressed = false;
     public Transform CameraTarget;
     public float rotationSpeed = 100f;
@@ -81,14 +81,16 @@ public class PlayerMovementNew : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Rotation * Time.deltaTime);
         }
 
-        if (Vertical != 0 || Horizontal != 0)
-        {
-            animator.SetBool("Forward", true);
-        }
+        float currentSpeed = new Vector2(Horizontal, Vertical).magnitude;
+        if (Speed > baseSpeed)
+            animator.SetFloat("speed", currentSpeed);
+        else
+            animator.SetFloat("speed", currentSpeed * 0.5f);
 
-        if (Vertical == 0 && Horizontal == 0)
+        if (IsGrounded && velocity.y <= 0)
         {
-            animator.SetBool("Forward", false);
+            animator.SetBool("jump", false);
+            animator.SetBool("doublejump", false);
         }
     }
 
@@ -102,20 +104,27 @@ public class PlayerMovementNew : MonoBehaviour
         LookInput = context.ReadValue<Vector2>();
     }
 
+
     public void OnJump(InputAction.CallbackContext context)
     {
+        GetComponent<PlayerSounds>().PlayJumpVoice();
         if (context.started)
         {
-
             jumpPressed = true;
             if (JumpCount < JumpLimit)
             {
-                if (JumpCount >= 1 && !GameManager.Instance.CanDoubleJump) return;
-
-                if (!IsGrounded && JumpCount == 0)
+                if (JumpCount == 0)
                 {
-                    JumpCount++;
+                    animator.SetBool("jump", true);
+                    animator.SetBool("doublejump", false);
                 }
+                else if (JumpCount == 1 && GameManager.Instance.CanDoubleJump)
+                {
+                    animator.SetBool("jump", false);
+                    animator.SetBool("doublejump", true);
+                }
+                else return;
+
                 velocity.y = Mathf.Sqrt(JumpForce * -2f * Gravity);
                 JumpCount++;
             }
