@@ -19,15 +19,9 @@ public class GuardAi : MonoBehaviour
     private bool returningToRoom = false;
     private int lastPatrolIndex = -1;
 
-    private void Awake()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
 
-    private void OnEnable()
-    {
-        GameManager.Instance.OnPlayerSpotted += HandlePlayerSpotted;
-    }
+
+
 
     private void OnDisable()
     {
@@ -37,6 +31,8 @@ public class GuardAi : MonoBehaviour
 
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        GameManager.Instance.OnPlayerSpotted += HandlePlayerSpotted;
         agent.SetDestination(RoomPosition.position);
     }
 

@@ -3,15 +3,28 @@ using UnityEngine;
 public class CameraDetector : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
+    public float detectionRadius = 0.5f;
+    public float detectionRange = 15f;
+    public Transform cameraEye;
+    public LayerMask playerLayer;
 
-
-        private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag(playerTag))
+        RaycastHit hit;
+        if (Physics.SphereCast(cameraEye.position, detectionRadius, cameraEye.forward, out hit, detectionRange, playerLayer))
         {
-            GameManager.Instance.AlertGuards();
+            if (hit.collider.CompareTag(playerTag))
+            {
+                GameManager.Instance.AlertGuards();
+            }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (cameraEye == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(cameraEye.position, cameraEye.position + cameraEye.forward * detectionRange);
+        Gizmos.DrawWireSphere(cameraEye.position + cameraEye.forward * detectionRange, detectionRadius);
     }
-
-
+}
