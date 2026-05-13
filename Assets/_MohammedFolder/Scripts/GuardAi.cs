@@ -8,6 +8,7 @@ public class GuardAi : MonoBehaviour
     public GameObject Player;
 
     private NavMeshAgent agent;
+    private Animator animator;
     private enum GuardState { Resting, Patrolling, Alerted }
     private GuardState currentState = GuardState.Resting;
 
@@ -18,22 +19,24 @@ public class GuardAi : MonoBehaviour
     private float patrolDuration;
     private bool returningToRoom = false;
     private int lastPatrolIndex = -1;
+    private bool hasEnteredSit = false;
 
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+    }
 
-
-
+    private void Start()
+    {
+        GameManager.Instance.OnPlayerSpotted += HandlePlayerSpotted;
+        agent.SetDestination(RoomPosition.position);
+    }
 
     private void OnDisable()
     {
         if (GameManager.Instance != null)
             GameManager.Instance.OnPlayerSpotted -= HandlePlayerSpotted;
-    }
-
-    private void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        GameManager.Instance.OnPlayerSpotted += HandlePlayerSpotted;
-        agent.SetDestination(RoomPosition.position);
     }
 
     private void Update()
@@ -50,13 +53,31 @@ public class GuardAi : MonoBehaviour
                 UpdateAlerted();
                 break;
         }
+
+        // once sitEnter finishes switch to sitIdle and stay there
+        if (hasEnteredSit)
+        {
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsName("SitEnter") && state.normalizedTime >= 1f)
+            {
+                animator.SetBool("sitEnter", false);
+                animator.SetBool("sitIdle", true);
+            }
+        }
     }
 
     private void UpdateResting()
     {
+        if (agent.remainingDistance <= agent.stoppingDistance && !hasEnteredSit)
+        {
+            hasEnteredSit = true;
+            animator.SetBool("sitEnter", true);
+        }
+
         timer += Time.deltaTime;
         if (timer >= restTime)
         {
+            StandUp();
             timer = 0f;
             patrolTimer = 0f;
             patrolDuration = Random.Range(120f, 180f);
@@ -66,8 +87,23 @@ public class GuardAi : MonoBehaviour
         }
     }
 
+    private void StandUp()
+    {
+        hasEnteredSit = false;
+        animator.SetBool("sitIdle", false);
+        animator.SetBool("sitEnter", false);
+        animator.SetBool("sitExit", true);
+    }
+
     private void UpdatePatrolling()
     {
+        // reset sitExit once animation finishes
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.IsName("SitExit") && state.normalizedTime >= 1f)
+        {
+            animator.SetBool("sitExit", false);
+        }
+
         if (returningToRoom)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -137,6 +173,7 @@ public class GuardAi : MonoBehaviour
 
     private void HandlePlayerSpotted()
     {
+        StandUp();
         currentState = GuardState.Alerted;
         timer = 0f;
         agent.SetDestination(Player.transform.position);
