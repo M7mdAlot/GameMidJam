@@ -948,7 +948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &736004921
 AudioListener:
   m_ObjectHideFlags: 0
@@ -37796,8 +37796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8364c701bfef7448b5bf362bcff0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SniperPuzzleManager
-  playerCharacter: {fileID: 0}
-  mainPlayerCamera: {fileID: 0}
+  playerCharacter: {fileID: 932164036}
+  mainPlayerCamera: {fileID: 330585543}
   sniperCamera: {fileID: 736004920}
   firePoint: {fileID: 957293589}
   laserRenderer: {fileID: 9075548061341323492}
