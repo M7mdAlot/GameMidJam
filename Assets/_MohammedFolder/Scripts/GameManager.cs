@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -71,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CaughtSequence()
     {
+        SceneManager.LoadScene(2);
+
         isCaught = true;
         PlayerMovement.enabled = false;
         Time.timeScale = 0f;
