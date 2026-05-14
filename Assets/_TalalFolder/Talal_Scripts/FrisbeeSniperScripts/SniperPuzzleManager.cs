@@ -5,8 +5,8 @@ public class SniperPuzzleManager : MonoBehaviour
 {
     [Header("Player & Cameras")]
     public GameObject playerCharacter;
-    public Camera mainPlayerCamera;
-    public Camera sniperCamera; 
+    public GameObject mainPlayerCamera;
+    public GameObject sniperCamera; 
 
     [Header("Sniper Settings")]
     public Transform firePoint; 
