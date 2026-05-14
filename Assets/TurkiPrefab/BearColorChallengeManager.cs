@@ -5,6 +5,7 @@ using TMPro;
 
 public class BearColorChallengeManager : MonoBehaviour
 {
+    public GameObject Sprint;
     [Header("Pillows")]
     public ColorPillow[] pillows;
 
@@ -211,8 +212,7 @@ public class BearColorChallengeManager : MonoBehaviour
         if (audioSource != null)
             audioSource.Stop();
 
-        // إذا تبي تطفي العيون بعد النهاية:
-        // TurnEyes(false);
+        Sprint.SetActive(true);
     }
 
     void UpdateUI()

@@ -5325,14 +5325,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 611973922054037190, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 60505355296316966}
-    - target: {fileID: 611973922054037190, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 1137716615512311327, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: m_Name
       value: PackAge (1)
@@ -5382,25 +5374,9 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: 'pillows.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8764969714969388353}
-    - target: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: 'pillows.Array.data[1]'
-      value: 
-      objectReference: {fileID: 7100373327638529605}
-    - target: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: 'pillows.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: 'pillows.Array.data[3]'
-      value: 
-      objectReference: {fileID: 4379801768932333334}
-    - target: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: 'pillows.Array.data[4]'
-      value: 
-      objectReference: {fileID: 286093845098117644}
     - target: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: bearEyeLights.Array.size
       value: 2
@@ -5441,18 +5417,10 @@ PrefabInstance:
       propertyPath: colorPillow
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3399389222292647387, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 3599404806870904733, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: pillowColor
       value: White
       objectReference: {fileID: 0}
-    - target: {fileID: 4112710217007973257, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 4491830063370489155, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: pillowColor
       value: White
@@ -5473,50 +5441,14 @@ PrefabInstance:
       propertyPath: pillowColor
       value: Blue
       objectReference: {fileID: 0}
-    - target: {fileID: 5410776834707404628, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 286093845098117644}
-    - target: {fileID: 5410776834707404628, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 5451786344830251216, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: pillowColor
       value: Yellow
       objectReference: {fileID: 0}
-    - target: {fileID: 5681886245801345404, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 7100373327638529605}
-    - target: {fileID: 5681886245801345404, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 6675613665210456666, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: colorPillow
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6675613665210456666, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
-    - target: {fileID: 6724799495445387332, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 8504737531031406495}
-    - target: {fileID: 6724799495445387332, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
-    - target: {fileID: 7187602152470791849, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 8764969714969388353}
-    - target: {fileID: 7187602152470791849, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 7869283562890871006, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.49
@@ -5525,85 +5457,182 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d3d2b4a81d7616d47a55d6bbdf47e346, type: 2}
-    - target: {fileID: 8346303379291998752, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 4379801768932333334}
-    - target: {fileID: 8346303379291998752, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 8401716469100436938, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: pillowColor
       value: Pink
       objectReference: {fileID: 0}
-    - target: {fileID: 8540355260233246486, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 988196435337367599}
-    - target: {fileID: 8540355260233246486, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
     - target: {fileID: 8801230695686225750, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.46
       objectReference: {fileID: 0}
-    - target: {fileID: 9180052218395708073, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: colorPillow
-      value: 
-      objectReference: {fileID: 6769502582592075701}
-    - target: {fileID: 9180052218395708073, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-      propertyPath: challengeManager
-      value: 
-      objectReference: {fileID: 5899322650713638597}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5225934036662424826, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 4112710217007973257, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 9180052218395708073, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 5410776834707404628, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 8540355260233246486, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 8346303379291998752, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 611973922054037190, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 5681886245801345404, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 6724799495445387332, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 7187602152470791849, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 3087602312112016537, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 1559037833059794281, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 5451786344830251216, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 5036728015380699891, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 8401716469100436938, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 4491830063370489155, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+    - {fileID: 3599404806870904733, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8407910137900680288, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
     - {fileID: 7350911388789222546, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
     - {fileID: 1450933838891940307, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
     - {fileID: 7811342211110461175, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2520467867046322138, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8104251667966846117}
+    - targetCorrespondingSourceObject: {fileID: 2520467867046322138, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7430058538738446961}
+    - targetCorrespondingSourceObject: {fileID: 5816796687910508297, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5024766538340231253}
+    - targetCorrespondingSourceObject: {fileID: 5816796687910508297, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6080473083599061386}
+    - targetCorrespondingSourceObject: {fileID: 4471844350960267233, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6875026376038547688}
+    - targetCorrespondingSourceObject: {fileID: 4471844350960267233, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 67373694885965506}
+    - targetCorrespondingSourceObject: {fileID: 2845213652012569231, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2998500760966576661}
+    - targetCorrespondingSourceObject: {fileID: 2845213652012569231, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6256569610492476623}
+    - targetCorrespondingSourceObject: {fileID: 4379039868947075143, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3945095945146870028}
+    - targetCorrespondingSourceObject: {fileID: 4379039868947075143, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7470377266797091509}
+    - targetCorrespondingSourceObject: {fileID: 6726169453509413015, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1563272374798227458}
+    - targetCorrespondingSourceObject: {fileID: 6726169453509413015, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4343884214548589347}
+    - targetCorrespondingSourceObject: {fileID: 2848082519428649855, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4246123359125707365}
+    - targetCorrespondingSourceObject: {fileID: 2848082519428649855, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5008041915592182134}
+    - targetCorrespondingSourceObject: {fileID: 1843645228996803139, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8578152167987246404}
+    - targetCorrespondingSourceObject: {fileID: 1843645228996803139, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7383772560546804613}
+    - targetCorrespondingSourceObject: {fileID: 3366524240548498174, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8589978457945831954}
+    - targetCorrespondingSourceObject: {fileID: 5368011838987164929, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8337076133975559290}
   m_SourcePrefab: {fileID: 100100000, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
---- !u!114 &60505355296316966 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5225934036662424826, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+--- !u!1 &157564750379276253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5368011838987164929, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
---- !u!114 &286093845098117644 stripped
+--- !u!114 &8337076133975559290
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5451786344830251216, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-  m_PrefabInstance: {fileID: 5210886997514717916}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 157564750379276253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 50f28ea98fc24b4448a00ca438124197, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
---- !u!114 &988196435337367599 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5036728015380699891, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-  m_PrefabInstance: {fileID: 5210886997514717916}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
+  m_EditorClassIdentifier: Assembly-CSharp::StartBearChallengeTrigger
+  challengeManager: {fileID: 8589978457945831954}
 --- !u!108 &1416314729257380726 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 6626774875624907178, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1515722299302609483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6726169453509413015, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  m_PrefabInstance: {fileID: 5210886997514717916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563272374798227458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515722299302609483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
+--- !u!114 &4343884214548589347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515722299302609483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
+  pillowColor: Pink
+--- !u!1 &1795146080934043093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5816796687910508297, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  m_PrefabInstance: {fileID: 5210886997514717916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5024766538340231253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795146080934043093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
+  pillowColor: White
+--- !u!114 &6080473083599061386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795146080934043093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 5024766538340231253}
 --- !u!82 &3946744488127248160 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 9121316665208815100, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
@@ -5614,77 +5643,247 @@ Light:
   m_CorrespondingSourceObject: {fileID: 8207341338738288050, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4379801768932333334 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8401716469100436938, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
-  m_PrefabInstance: {fileID: 5210886997514717916}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
 --- !u!4 &5637057620346296840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 462199605626884308, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5899322650713638597 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1841497998390119449, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+--- !u!1 &5892181164086767775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1843645228996803139, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &8578152167987246404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5892181164086767775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
+--- !u!114 &7383772560546804613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5892181164086767775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
+  pillowColor: Yellow
+--- !u!1 &7415319621746786338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3366524240548498174, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  m_PrefabInstance: {fileID: 5210886997514717916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8589978457945831954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7415319621746786338}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d31d6abaf2d2ca24ab52fb842d2f23e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BearColorChallengeManager
---- !u!114 &6769502582592075701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1559037833059794281, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  pillows:
+  - {fileID: 5024766538340231253}
+  - {fileID: 6256569610492476623}
+  - {fileID: 4343884214548589347}
+  - {fileID: 7383772560546804613}
+  bearEyeLights:
+  - {fileID: 4158686588744691566}
+  - {fileID: 1416314729257380726}
+  challengeUI: {fileID: 0}
+  progressText: {fileID: 0}
+  timerText: {fileID: 0}
+  colorText: {fileID: 0}
+  audioSource: {fileID: 3946744488127248160}
+  tickSound: {fileID: 8300000, guid: 8f87892149e9f55459fdf40116a100f8, type: 3}
+  correctSound: {fileID: 8300000, guid: 80fa8222d5703ec4093e155fd286f970, type: 3}
+  wrongSound: {fileID: 8300000, guid: c9f6f63d5094bdc44a1fe2a35a50efd7, type: 3}
+  totalRounds: 5
+  answerTime: 5
+  successLightTime: 2
+  failLightTime: 1
+  pinkColor: {r: 1, g: 0, b: 1, a: 1}
+  blueColor: {r: 0, g: 0, b: 1, a: 1}
+  orangeColor: {r: 1, g: 0.5, b: 0, a: 1}
+  whiteColor: {r: 1, g: 1, b: 1, a: 1}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  greenSuccess: {r: 0, g: 1, b: 0, a: 1}
+  redFail: {r: 1, g: 0, b: 0, a: 1}
+--- !u!1 &7686037311603348742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2520467867046322138, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &8104251667966846117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686037311603348742}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
---- !u!114 &7100373327638529605 stripped
+  pillowColor: 
+--- !u!114 &7430058538738446961
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3087602312112016537, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686037311603348742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
+--- !u!1 &8011042408476973139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2845213652012569231, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &2998500760966576661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8011042408476973139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
+--- !u!114 &6256569610492476623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8011042408476973139}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
---- !u!114 &8504737531031406495 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4491830063370489155, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  pillowColor: Orange
+--- !u!1 &8058806616299559331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2848082519428649855, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &4246123359125707365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058806616299559331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
+--- !u!114 &5008041915592182134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058806616299559331}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
---- !u!114 &8764969714969388353 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3599404806870904733, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  pillowColor: 
+--- !u!1 &8400818123439872667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4379039868947075143, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
   m_PrefabInstance: {fileID: 5210886997514717916}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &3945095945146870028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400818123439872667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
+--- !u!114 &7470377266797091509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400818123439872667}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
+  pillowColor: 
+--- !u!1 &8529787608770012477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4471844350960267233, guid: 8c91f72203c47c345bf873f7cc740f34, type: 3}
+  m_PrefabInstance: {fileID: 5210886997514717916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6875026376038547688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529787608770012477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1636194ac3091284ea86ff32487c54ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorPillow
+  pillowColor: 
+--- !u!114 &67373694885965506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529787608770012477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d45e1c135aee6c4693f1d62ad554a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowTrigger
+  challengeManager: {fileID: 0}
+  colorPillow: {fileID: 0}
 --- !u!1001 &5449511243665875752
 PrefabInstance:
   m_ObjectHideFlags: 0
