@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public event System.Action OnPlayerSpotted;
+    public event System.Action<Vector3> OnCameraSpotted;
 
     public GameObject Player;
     public PlayerMovementNew PlayerMovement;
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
     public void AlertGuards()
     {
         OnPlayerSpotted?.Invoke();
+    }
+
+    public void AlertGuardsCamera(Vector3 spottedPosition)
+    {
+        OnCameraSpotted?.Invoke(spottedPosition);
     }
 
     public void PlayerCaught()

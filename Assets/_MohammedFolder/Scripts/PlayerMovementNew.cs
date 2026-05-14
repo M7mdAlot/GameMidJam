@@ -25,6 +25,8 @@ public class PlayerMovementNew : MonoBehaviour
     public bool IsDashing = false;
     private Vector3 LastMoveDirection;
     int AirDash = 0;
+    private bool wasGrounded = true;
+    private bool wasMoving = false;
 
     void Start()
     {
@@ -81,17 +83,38 @@ public class PlayerMovementNew : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Rotation * Time.deltaTime);
         }
 
-        float currentSpeed = new Vector2(Horizontal, Vertical).magnitude;
+        float targetSpeed = new Vector2(Horizontal, Vertical).magnitude;
         if (Speed > baseSpeed)
-            animator.SetFloat("speed", currentSpeed);
+            targetSpeed = 1f;
         else
-            animator.SetFloat("speed", currentSpeed * 0.5f);
+            targetSpeed *= 0.5f;
 
-        if (IsGrounded && velocity.y <= 0)
+        float currentAnimSpeed = animator.GetFloat("speed");
+        animator.SetFloat("speed", Mathf.Lerp(currentAnimSpeed, targetSpeed, 10f * Time.deltaTime));
+
+        animator.SetFloat("verticalVelocity", velocity.y);
+        animator.SetBool("isGrounded", IsGrounded);
+
+        if (CharaMove == Vector3.zero && wasMoving)
+            animator.SetBool("stopRunning", true);
+        else
+            animator.SetBool("stopRunning", false);
+
+        if (!wasGrounded && IsGrounded)
         {
-            animator.SetBool("jump", false);
+            animator.SetBool("jumpStart", false);
+            animator.SetBool("jumpStartMoving", false);
             animator.SetBool("doublejump", false);
         }
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("DoubleJump") && stateInfo.normalizedTime >= 1f)
+        {
+            animator.SetBool("doublejump", false);
+        }
+
+        wasGrounded = IsGrounded;
+        wasMoving = CharaMove != Vector3.zero;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -104,10 +127,8 @@ public class PlayerMovementNew : MonoBehaviour
         LookInput = context.ReadValue<Vector2>();
     }
 
-
     public void OnJump(InputAction.CallbackContext context)
     {
-        GetComponent<PlayerSounds>().PlayJumpVoice();
         if (context.started)
         {
             jumpPressed = true;
@@ -115,13 +136,17 @@ public class PlayerMovementNew : MonoBehaviour
             {
                 if (JumpCount == 0)
                 {
-                    animator.SetBool("jump", true);
+                    bool isMoving = MoveInput != Vector2.zero;
+                    animator.SetBool("jumpStart", !isMoving);
+                    animator.SetBool("jumpStartMoving", isMoving);
                     animator.SetBool("doublejump", false);
                 }
                 else if (JumpCount == 1 && GameManager.Instance.CanDoubleJump)
                 {
-                    animator.SetBool("jump", false);
+                    animator.SetBool("jumpStart", false);
+                    animator.SetBool("jumpStartMoving", false);
                     animator.SetBool("doublejump", true);
+                    Debug.Log("Double jump triggered");
                 }
                 else return;
 

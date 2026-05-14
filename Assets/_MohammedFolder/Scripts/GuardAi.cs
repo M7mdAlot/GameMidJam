@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class GuardAi : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class GuardAi : MonoBehaviour
     public GameObject Player;
 
     private NavMeshAgent agent;
-    private enum GuardState { Resting, Patrolling, Alerted }
+    private Animator animator;
+    private enum GuardState { Resting, Patrolling, Alerted, Investigating }
     private GuardState currentState = GuardState.Resting;
 
     private float restTime = 180f;
@@ -18,22 +20,31 @@ public class GuardAi : MonoBehaviour
     private float patrolDuration;
     private bool returningToRoom = false;
     private int lastPatrolIndex = -1;
+    private bool hasEnteredSit = false;
+    private float lostPlayerTimer = 0f;
+    private float lostPlayerTime = 3f;
+    private Vector3 lastKnownPlayerPosition;
 
-
-
-
-
-    private void OnDisable()
+    private void Awake()
     {
-        if (GameManager.Instance != null)
-            GameManager.Instance.OnPlayerSpotted -= HandlePlayerSpotted;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         GameManager.Instance.OnPlayerSpotted += HandlePlayerSpotted;
+        GameManager.Instance.OnCameraSpotted += HandleCameraSpotted;
         agent.SetDestination(RoomPosition.position);
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPlayerSpotted -= HandlePlayerSpotted;
+            GameManager.Instance.OnCameraSpotted -= HandleCameraSpotted;
+        }
     }
 
     private void Update()
@@ -49,11 +60,33 @@ public class GuardAi : MonoBehaviour
             case GuardState.Alerted:
                 UpdateAlerted();
                 break;
+            case GuardState.Investigating:
+                UpdateInvestigating();
+                break;
         }
+
+        if (hasEnteredSit)
+        {
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsName("SitEnter") && state.normalizedTime >= 1f)
+            {
+                animator.SetBool("sitEnter", false);
+                animator.SetBool("sitIdle", true);
+            }
+        }
+
+        float currentSpeed = agent.velocity.magnitude;
+        animator.SetFloat("guardSpeed", currentSpeed);
     }
 
     private void UpdateResting()
     {
+        if (agent.remainingDistance <= agent.stoppingDistance && !hasEnteredSit)
+        {
+            hasEnteredSit = true;
+            animator.SetBool("sitEnter", true);
+        }
+
         timer += Time.deltaTime;
         if (timer >= restTime)
         {
@@ -61,6 +94,9 @@ public class GuardAi : MonoBehaviour
             patrolTimer = 0f;
             patrolDuration = Random.Range(120f, 180f);
             returningToRoom = false;
+            hasEnteredSit = false;
+            animator.SetBool("sitIdle", false);
+            animator.SetBool("sitEnter", false);
             currentState = GuardState.Patrolling;
             GoToNextPatrolPoint();
         }
@@ -101,21 +137,51 @@ public class GuardAi : MonoBehaviour
 
     private void UpdateAlerted()
     {
-        agent.SetDestination(Player.transform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
+
+        if (distanceToPlayer <= 20f)
+        {
+            lastKnownPlayerPosition = Player.transform.position;
+            lostPlayerTimer = 0f;
+            agent.SetDestination(Player.transform.position);
+        }
+        else
+        {
+            lostPlayerTimer += Time.deltaTime;
+
+            if (lostPlayerTimer >= lostPlayerTime)
+            {
+                lostPlayerTimer = 0f;
+                currentState = GuardState.Investigating;
+                agent.SetDestination(lastKnownPlayerPosition);
+                return;
+            }
+        }
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
-
             if (distanceToPlayer <= 1.5f)
             {
                 GameManager.Instance.PlayerCaught();
             }
             else
             {
+                currentState = GuardState.Investigating;
+                agent.SetDestination(lastKnownPlayerPosition);
+            }
+        }
+    }
+
+    private void UpdateInvestigating()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 5f)
+            {
                 timer = 0f;
-                currentState = GuardState.Resting;
-                agent.SetDestination(RoomPosition.position);
+                currentState = GuardState.Patrolling;
+                GoToNextPatrolPoint();
             }
         }
     }
@@ -137,8 +203,28 @@ public class GuardAi : MonoBehaviour
 
     private void HandlePlayerSpotted()
     {
+        StopAllCoroutines();
+        hasEnteredSit = false;
+        animator.SetBool("sitIdle", false);
+        animator.SetBool("sitEnter", false);
+        animator.SetBool("sitExit", false);
+        animator.Play("Locomotion");
+        lastKnownPlayerPosition = Player.transform.position;
+        lostPlayerTimer = 0f;
         currentState = GuardState.Alerted;
         timer = 0f;
         agent.SetDestination(Player.transform.position);
+    }
+    private void HandleCameraSpotted(Vector3 spottedPosition)
+    {
+        StopAllCoroutines();
+        hasEnteredSit = false;
+        animator.SetBool("sitIdle", false);
+        animator.SetBool("sitEnter", false);
+        animator.SetBool("sitExit", false);
+        animator.Play("Locomotion");
+        currentState = GuardState.Investigating;
+        timer = 0f;
+        agent.SetDestination(spottedPosition);
     }
 }
