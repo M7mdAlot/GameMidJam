@@ -15,7 +15,7 @@ public class CameraDetector : MonoBehaviour
         {
             if (hit.collider.CompareTag(playerTag))
             {
-                GameManager.Instance.AlertGuards();
+                GameManager.Instance.AlertGuardsCamera(hit.collider.transform.position);
             }
         }
     }

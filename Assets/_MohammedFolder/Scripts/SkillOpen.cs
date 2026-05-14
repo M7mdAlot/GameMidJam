@@ -37,11 +37,14 @@ public class SkillUnlock : MonoBehaviour
     private System.Collections.IEnumerator ReenableMovement()
     {
         Animator playerAnimator = GameManager.Instance.Player.GetComponent<Animator>();
+        float timeout = 3f;
+        float elapsed = 0f;
 
         yield return new WaitUntil(() =>
         {
+            elapsed += Time.deltaTime;
             AnimatorStateInfo state = playerAnimator.GetCurrentAnimatorStateInfo(0);
-            return state.IsName("Pickup") && state.normalizedTime >= 1f;
+            return (state.IsName("Pickup") && state.normalizedTime >= 1f) || elapsed >= timeout;
         });
 
         GameManager.Instance.PlayerMovement.enabled = true;
