@@ -4,9 +4,23 @@ using System.Collections;
 
 public class GuardAi : MonoBehaviour
 {
+    [Header("Guard Settings")]
     public Transform RoomPosition;
     public Transform[] PatrolPoints;
     public GameObject Player;
+
+    // <-- NEW: Aggression Settings you can tweak in Unity! -->
+    [Header("Aggression & Chase Settings")]
+    [Tooltip("How close the guard needs to be to catch you")]
+    public float catchDistance = 2.5f; 
+    [Tooltip("How far you have to run to break his line of sight")]
+    public float giveUpDistance = 40f; 
+    [Tooltip("How many seconds he keeps searching AFTER he loses sight of you")]
+    public float memoryTime = 8f; 
+    
+    [Header("Speed Settings")]
+    public float patrolSpeed = 3.5f;
+    public float chaseSpeed = 7.0f; // He runs faster when alerted!
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -21,14 +35,17 @@ public class GuardAi : MonoBehaviour
     private bool returningToRoom = false;
     private int lastPatrolIndex = -1;
     private bool hasEnteredSit = false;
+    
     private float lostPlayerTimer = 0f;
-    private float lostPlayerTime = 3f;
     private Vector3 lastKnownPlayerPosition;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        
+        // Start at walking speed
+        if (agent != null) agent.speed = patrolSpeed;
     }
 
     private void Start()
@@ -104,6 +121,8 @@ public class GuardAi : MonoBehaviour
 
     private void UpdatePatrolling()
     {
+        agent.speed = patrolSpeed; // Ensure he is walking
+
         if (returningToRoom)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -135,29 +154,32 @@ public class GuardAi : MonoBehaviour
         }
     }
 
-   private void UpdateAlerted()
+    private void UpdateAlerted()
     {
+        agent.speed = chaseSpeed; // Ensure he is sprinting!
+
         float distanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
 
-        // 1. If the guard is close enough, instantly catch the player!
-        if (distanceToPlayer <= 2.5f) // Increased to 2.5f so colliders don't block the catch
+        // 1. Math-based Catch (Backup in case colliders fail)
+        if (distanceToPlayer <= catchDistance) 
         {
             GameManager.Instance.PlayerCaught();
-            return; // Stop doing anything else
+            return; 
         }
 
-        // 2. Otherwise, keep chasing the player
-        if (distanceToPlayer <= 20f)
+        // 2. Chasing the Player
+        if (distanceToPlayer <= giveUpDistance)
         {
             lastKnownPlayerPosition = Player.transform.position;
-            lostPlayerTimer = 0f;
+            lostPlayerTimer = 0f; // Keep resetting the timer as long as he sees you
             agent.SetDestination(Player.transform.position);
         }
         else
         {
+            // 3. Player ran out of range, start counting down his memory
             lostPlayerTimer += Time.deltaTime;
 
-            if (lostPlayerTimer >= lostPlayerTime)
+            if (lostPlayerTimer >= memoryTime)
             {
                 lostPlayerTimer = 0f;
                 currentState = GuardState.Investigating;
@@ -166,15 +188,17 @@ public class GuardAi : MonoBehaviour
             }
         }
 
-        // 3. If we reached the last known spot and the player is gone, investigate
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             currentState = GuardState.Investigating;
             agent.SetDestination(lastKnownPlayerPosition);
         }
     }
+
     private void UpdateInvestigating()
     {
+        agent.speed = patrolSpeed; // Slow back down while looking around
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             timer += Time.deltaTime;
@@ -204,19 +228,23 @@ public class GuardAi : MonoBehaviour
 
     private void HandlePlayerSpotted()
     {
-        StopAllCoroutines();
-        hasEnteredSit = false;
-        animator.SetBool("sitIdle", false);
-        animator.SetBool("sitEnter", false);
-        animator.SetBool("sitExit", false);
-        animator.Play("Locomotion");
+        WakeUpGuard();
         lastKnownPlayerPosition = Player.transform.position;
         lostPlayerTimer = 0f;
         currentState = GuardState.Alerted;
         timer = 0f;
         agent.SetDestination(Player.transform.position);
     }
+
     private void HandleCameraSpotted(Vector3 spottedPosition)
+    {
+        WakeUpGuard();
+        currentState = GuardState.Investigating;
+        timer = 0f;
+        agent.SetDestination(spottedPosition);
+    }
+
+    private void WakeUpGuard()
     {
         StopAllCoroutines();
         hasEnteredSit = false;
@@ -224,12 +252,9 @@ public class GuardAi : MonoBehaviour
         animator.SetBool("sitEnter", false);
         animator.SetBool("sitExit", false);
         animator.Play("Locomotion");
-        currentState = GuardState.Investigating;
-        timer = 0f;
-        agent.SetDestination(spottedPosition);
     }
 
-    // This catches the player if they physically bump into each other
+    // --- YOUR COLLISION FIXES REMAIN INTACT HERE ---
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == Player)
@@ -239,15 +264,11 @@ public class GuardAi : MonoBehaviour
         }
     }
 
-    // This catches the player if one of them is using a Trigger collider
     private void OnTriggerEnter(Collider other)
     {
-        // 1. This will print the name of literally ANYTHING that touches the guard
-        Debug.Log("The Guard just touched: " + other.gameObject.name);
-
-        if (other.CompareTag("Player"))
+        if (other.gameObject == Player)
         {
-            Debug.Log("Busted! Triggering GameManager...");
+            Debug.Log("Guard's trigger touched the player!");
             GameManager.Instance.PlayerCaught();
         }
     }

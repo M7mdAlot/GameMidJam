@@ -8,6 +8,7 @@ TagManager:
   - WinningPiece
   - WhiteFrisbee
   - RedFrisbee
+  - WinningFloor
   layers:
   - Default
   - TransparentFX

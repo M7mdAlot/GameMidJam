@@ -17,6 +17,11 @@ public class SniperPuzzleManager : MonoBehaviour
     public LineRenderer laserRenderer; 
     public float laserWidth = 0.02f;
 
+    // <-- NEW: Audio Settings -->
+    [Header("Audio")]
+    public AudioSource sniperAudioSource;
+    public AudioClip shootSound;
+
     [Header("Aiming Angles (X, Y, Z)")]
     public Vector3 centerAimAngle = new Vector3(0, 0, 0);
     public Vector3 leftAimAngle = new Vector3(0, -45, 0);
@@ -41,7 +46,6 @@ public class SniperPuzzleManager : MonoBehaviour
         sniperCamera.gameObject.SetActive(false);
         laserRenderer.enabled = false; 
 
-        // <-- NEW: Hide the reward item at the start of the game -->
         if (rewardItem != null) rewardItem.SetActive(false);
     }
 
@@ -117,6 +121,12 @@ public class SniperPuzzleManager : MonoBehaviour
 
     private void Shoot()
     {
+        // <-- NEW: Play the shooting sound! -->
+        if (sniperAudioSource != null && shootSound != null)
+        {
+            sniperAudioSource.PlayOneShot(shootSound);
+        }
+
         if (Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit))
         {
             if (hit.collider.CompareTag("WhiteFrisbee"))
@@ -129,7 +139,6 @@ public class SniperPuzzleManager : MonoBehaviour
                     Debug.Log("YOU WIN! 7 in a row complete.");
                     isPuzzleSolved = true; 
 
-                    // <-- NEW: Reveal the reward item immediately upon winning! -->
                     if (rewardItem != null)
                     {
                         rewardItem.SetActive(true);
