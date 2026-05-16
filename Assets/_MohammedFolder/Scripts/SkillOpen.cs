@@ -31,6 +31,27 @@ public class SkillUnlock : MonoBehaviour
         }
 
         Debug.Log(skill + " unlocked!");
+
+        // --- NEW CODE: HIDE THE ITEM SAFELY ---
+
+        // 1. Turn off the Interactable script so the player can't keep pressing 'E'
+        Interactable interactScript = GetComponent<Interactable>();
+        if (interactScript != null) interactScript.enabled = false;
+
+        // 2. Hide all the visual parts of the item (including child objects)
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.enabled = false;
+        }
+        
+        // 3. Turn off colliders so the player doesn't bump into an invisible item
+        foreach (Collider c in GetComponentsInChildren<Collider>())
+        {
+            c.enabled = false;
+        }
+
+        // --------------------------------------
+
         StartCoroutine(ReenableMovement());
     }
 
@@ -48,5 +69,9 @@ public class SkillUnlock : MonoBehaviour
         });
 
         GameManager.Instance.PlayerMovement.enabled = true;
+
+        // --- NEW CODE: CLEAN UP ---
+        // Now that the player is unfrozen, it is safe to completely delete the item from the game.
+        Destroy(gameObject);
     }
 }

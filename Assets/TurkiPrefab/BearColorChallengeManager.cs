@@ -49,6 +49,9 @@ public class BearColorChallengeManager : MonoBehaviour
 
     private bool challengeActive = false;
     private bool canAnswer = false;
+    
+    // <-- NEW: The permanent lock -->
+    private bool isPuzzleSolved = false; 
 
     private int lastSecond;
 
@@ -99,7 +102,8 @@ public class BearColorChallengeManager : MonoBehaviour
 
     public void StartChallenge()
     {
-        if (challengeActive) return;
+        // <-- UPDATED: If the puzzle is already solved, completely ignore the start trigger -->
+        if (challengeActive || isPuzzleSolved) return; 
 
         challengeActive = true;
         canAnswer = true;
@@ -199,6 +203,9 @@ public class BearColorChallengeManager : MonoBehaviour
     {
         challengeActive = false;
         canAnswer = false;
+        
+        // <-- NEW: Lock the puzzle forever so it can't be restarted -->
+        isPuzzleSolved = true; 
 
         if (progressText != null)
             progressText.text = "Completed!";
@@ -212,7 +219,14 @@ public class BearColorChallengeManager : MonoBehaviour
         if (audioSource != null)
             audioSource.Stop();
 
-        Sprint.SetActive(true);
+        // Reveal the Sprint skill!
+        if (Sprint != null)
+        {
+            Sprint.SetActive(true);
+        }
+        
+        // Optional: Turn the bear's eyes off when the game is completely over
+        TurnEyes(false); 
     }
 
     void UpdateUI()

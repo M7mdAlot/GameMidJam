@@ -135,10 +135,18 @@ public class GuardAi : MonoBehaviour
         }
     }
 
-    private void UpdateAlerted()
+   private void UpdateAlerted()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
 
+        // 1. If the guard is close enough, instantly catch the player!
+        if (distanceToPlayer <= 2.5f) // Increased to 2.5f so colliders don't block the catch
+        {
+            GameManager.Instance.PlayerCaught();
+            return; // Stop doing anything else
+        }
+
+        // 2. Otherwise, keep chasing the player
         if (distanceToPlayer <= 20f)
         {
             lastKnownPlayerPosition = Player.transform.position;
@@ -158,20 +166,13 @@ public class GuardAi : MonoBehaviour
             }
         }
 
+        // 3. If we reached the last known spot and the player is gone, investigate
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (distanceToPlayer <= 1.5f)
-            {
-                GameManager.Instance.PlayerCaught();
-            }
-            else
-            {
-                currentState = GuardState.Investigating;
-                agent.SetDestination(lastKnownPlayerPosition);
-            }
+            currentState = GuardState.Investigating;
+            agent.SetDestination(lastKnownPlayerPosition);
         }
     }
-
     private void UpdateInvestigating()
     {
         if (agent.remainingDistance <= agent.stoppingDistance)
@@ -226,5 +227,28 @@ public class GuardAi : MonoBehaviour
         currentState = GuardState.Investigating;
         timer = 0f;
         agent.SetDestination(spottedPosition);
+    }
+
+    // This catches the player if they physically bump into each other
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == Player)
+        {
+            Debug.Log("Guard physically touched the player!");
+            GameManager.Instance.PlayerCaught();
+        }
+    }
+
+    // This catches the player if one of them is using a Trigger collider
+    private void OnTriggerEnter(Collider other)
+    {
+        // 1. This will print the name of literally ANYTHING that touches the guard
+        Debug.Log("The Guard just touched: " + other.gameObject.name);
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Busted! Triggering GameManager...");
+            GameManager.Instance.PlayerCaught();
+        }
     }
 }

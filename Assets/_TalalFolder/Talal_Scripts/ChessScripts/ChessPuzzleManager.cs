@@ -11,13 +11,15 @@ public class ChessPuzzleManager : MonoBehaviour
     [Header("Puzzle Settings")]
     public Collider boardTriggerZone;
 
-    // <-- NEW: Visual Highlight Settings -->
+    // <-- NEW: The item that appears when you win -->
+    [Header("Reward Item")]
+    [Tooltip("Drag the item you want to appear here")]
+    public GameObject rewardItem; 
+
     [Header("Visuals / Highlights")]
-    [Tooltip("Drag the 4 specific square GameObjects here")]
     public GameObject[] highlightBlocks; 
     public Color highlightColor = Color.green;
     
-    // We use this to remember the original color of the blocks so we can change them back
     private Color[] originalColors; 
     private Renderer[] blockRenderers;
 
@@ -27,16 +29,6 @@ public class ChessPuzzleManager : MonoBehaviour
     public AudioClip wrongPieceSound;
     public AudioClip wrongSquareSound;
     public AudioClip checkmateSound;
-
-    [Header("Animations")]
-    public Animator firstAnimator;
-    public string firstTriggerName = "CheckmateTrigger1";
-
-    public Animator secondAnimator;
-    public string secondTriggerName = "CheckmateTrigger2";
-
-    public Animator thirdAnimator;
-    public string thirdTriggerName = "CheckmateTrigger3";
 
     private bool isPlayerNearBoard = false;
     private bool isInPuzzleMode = false;
@@ -51,7 +43,9 @@ public class ChessPuzzleManager : MonoBehaviour
         mainPlayerCamera.gameObject.SetActive(true);
         topDownCamera.gameObject.SetActive(false);
 
-        // <-- NEW: Prepare the blocks for highlighting -->
+        // Hide the reward item at the very beginning of the game
+        if (rewardItem != null) rewardItem.SetActive(false);
+
         SetupHighlightBlocks();
     }
 
@@ -68,7 +62,6 @@ public class ChessPuzzleManager : MonoBehaviour
         }
     }
 
-    // <-- NEW: Grabs the renderers and saves the original white/black colors -->
     private void SetupHighlightBlocks()
     {
         blockRenderers = new Renderer[highlightBlocks.Length];
@@ -84,27 +77,19 @@ public class ChessPuzzleManager : MonoBehaviour
         }
     }
 
-    // <-- NEW: Turns the blocks green -->
     private void TurnBlocksGreen()
     {
         for (int i = 0; i < blockRenderers.Length; i++)
         {
-            if (blockRenderers[i] != null)
-            {
-                blockRenderers[i].material.color = highlightColor;
-            }
+            if (blockRenderers[i] != null) blockRenderers[i].material.color = highlightColor;
         }
     }
 
-    // <-- NEW: Reverts the blocks back to normal -->
     private void ResetBlockColors()
     {
         for (int i = 0; i < blockRenderers.Length; i++)
         {
-            if (blockRenderers[i] != null)
-            {
-                blockRenderers[i].material.color = originalColors[i];
-            }
+            if (blockRenderers[i] != null) blockRenderers[i].material.color = originalColors[i];
         }
     }
 
@@ -153,9 +138,6 @@ public class ChessPuzzleManager : MonoBehaviour
             {
                 selectedPiece = clickedObject;
                 isPieceSelected = true;
-                Debug.Log("Good piece selected! Now click the winning square.");
-                
-                // <-- NEW: Make the squares turn green! -->
                 TurnBlocksGreen();
             }
             else if (clickedObject.CompareTag("WinningSquare") && isPieceSelected)
@@ -166,17 +148,14 @@ public class ChessPuzzleManager : MonoBehaviour
             {
                 if (isPieceSelected)
                 {
-                    Debug.Log("Wrong square!");
                     if (wrongSquareSound != null) audioSpeaker.PlayOneShot(wrongSquareSound);
                 }
                 else
                 {
-                    Debug.Log("Wrong piece!");
                     if (wrongPieceSound != null) audioSpeaker.PlayOneShot(wrongPieceSound);
                 }
                 
                 isPieceSelected = false; 
-                // <-- NEW: If they mess up, turn the blocks back to normal -->
                 ResetBlockColors();
             }
         }
@@ -190,17 +169,15 @@ public class ChessPuzzleManager : MonoBehaviour
         
         selectedPiece.transform.position = newPos;
 
-        Debug.Log("CHECKMATE! You win!");
-        
         if (checkmateSound != null) audioSpeaker.PlayOneShot(checkmateSound);
 
-        if (firstAnimator != null) firstAnimator.SetTrigger(firstTriggerName);
-        if (secondAnimator != null) secondAnimator.SetTrigger(secondTriggerName);
-        if (thirdAnimator != null) thirdAnimator.SetTrigger(thirdTriggerName); 
+        // <-- NEW: Reveal the item immediately upon winning! -->
+        if (rewardItem != null)
+        {
+            rewardItem.SetActive(true);
+        }
 
-        // <-- NEW: Turn the blocks back to normal now that the move is done -->
         ResetBlockColors();
-
         isPuzzleSolved = true; 
 
         StartCoroutine(EndPuzzleRoutine());

@@ -71,17 +71,17 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private IEnumerator CaughtSequence()
+  private IEnumerator CaughtSequence()
     {
-        SceneManager.LoadScene(2);
-
         isCaught = true;
-        PlayerMovement.enabled = false;
-        Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(CaughtFreezeTime);
-        Time.timeScale = 1f;
-        Player.transform.position = checkpointPosition;
-        PlayerMovement.enabled = true;
+        
+        Debug.Log("Player Caught! Loading Scene 2...");
+        
+        // This instantly loads the new scene
+        SceneManager.LoadScene(2);
+        
         isCaught = false;
+        
+        yield return null; 
     }
 }

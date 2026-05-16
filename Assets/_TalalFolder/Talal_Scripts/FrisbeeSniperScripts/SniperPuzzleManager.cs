@@ -8,17 +8,24 @@ public class SniperPuzzleManager : MonoBehaviour
     public GameObject mainPlayerCamera;
     public GameObject sniperCamera; 
 
+    [Header("Reward Item")]
+    [Tooltip("Drag the item you want to appear here")]
+    public GameObject rewardItem;
+
     [Header("Sniper Settings")]
     public Transform firePoint; 
     public LineRenderer laserRenderer; 
-    public float rotationAngle = 45f; 
+    public float laserWidth = 0.02f;
+
+    [Header("Aiming Angles (X, Y, Z)")]
+    public Vector3 centerAimAngle = new Vector3(0, 0, 0);
+    public Vector3 leftAimAngle = new Vector3(0, -45, 0);
+    public Vector3 rightAimAngle = new Vector3(0, 45, 0);
 
     [Header("Wave & Spawning Settings")]
     public int totalWaves = 7;
     public GameObject whiteFrisbeePrefab;
     public GameObject redFrisbeePrefab;
-    
-    [Tooltip("Drag your 3 empty GameObjects here (Left, Center, Right)")]
     public Transform[] spawnPoints; 
 
     private int currentWave = 0;
@@ -26,19 +33,21 @@ public class SniperPuzzleManager : MonoBehaviour
 
     private bool isPlayerNear = false;
     private bool isInPuzzleMode = false;
-    private Quaternion centerRotation;
+    private bool isPuzzleSolved = false; 
 
     void Start()
     {
         mainPlayerCamera.gameObject.SetActive(true);
         sniperCamera.gameObject.SetActive(false);
         laserRenderer.enabled = false; 
-        centerRotation = transform.rotation;
+
+        // <-- NEW: Hide the reward item at the start of the game -->
+        if (rewardItem != null) rewardItem.SetActive(false);
     }
 
     void Update()
     {
-        if (isPlayerNear && !isInPuzzleMode && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNear && !isInPuzzleMode && !isPuzzleSolved && Input.GetKeyDown(KeyCode.E))
         {
             StartPuzzle();
         }
@@ -52,6 +61,11 @@ public class SniperPuzzleManager : MonoBehaviour
             {
                 Shoot();
             }
+            
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                EndPuzzle();
+            }
         }
     }
 
@@ -63,6 +77,9 @@ public class SniperPuzzleManager : MonoBehaviour
         playerCharacter.SetActive(false);
         mainPlayerCamera.gameObject.SetActive(false);
         sniperCamera.gameObject.SetActive(true);
+        
+        laserRenderer.startWidth = laserWidth;
+        laserRenderer.endWidth = laserWidth;
         laserRenderer.enabled = true; 
 
         SpawnNextWave();
@@ -72,15 +89,15 @@ public class SniperPuzzleManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            transform.rotation = centerRotation * Quaternion.Euler(0, rotationAngle, 0);
+            transform.localRotation = Quaternion.Euler(rightAimAngle);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            transform.rotation = centerRotation * Quaternion.Euler(0, -rotationAngle, 0);
+            transform.localRotation = Quaternion.Euler(leftAimAngle);
         }
         else
         {
-            transform.rotation = centerRotation;
+            transform.localRotation = Quaternion.Euler(centerAimAngle);
         }
     }
 
@@ -109,7 +126,15 @@ public class SniperPuzzleManager : MonoBehaviour
 
                 if (currentWave >= totalWaves)
                 {
-                    Debug.Log("YOU WIN! All 7 waves complete.");
+                    Debug.Log("YOU WIN! 7 in a row complete.");
+                    isPuzzleSolved = true; 
+
+                    // <-- NEW: Reveal the reward item immediately upon winning! -->
+                    if (rewardItem != null)
+                    {
+                        rewardItem.SetActive(true);
+                    }
+
                     EndPuzzle();
                 }
                 else
@@ -119,8 +144,9 @@ public class SniperPuzzleManager : MonoBehaviour
             }
             else if (hit.collider.CompareTag("RedFrisbee"))
             {
-                Debug.Log("WRONG Target! Penalty!");
-                Destroy(hit.collider.gameObject); 
+                Debug.Log("WRONG Target! Streak broken. Resetting to Wave 1!");
+                currentWave = 0; 
+                SpawnNextWave(); 
             }
         }
     }
@@ -154,12 +180,12 @@ public class SniperPuzzleManager : MonoBehaviour
     {
         isInPuzzleMode = false;
         laserRenderer.enabled = false;
-        transform.rotation = centerRotation; 
+        
+        transform.localRotation = Quaternion.Euler(centerAimAngle); 
 
         sniperCamera.gameObject.SetActive(false);
         mainPlayerCamera.gameObject.SetActive(true);
         playerCharacter.SetActive(true);
-        isPlayerNear = false;
 
         foreach (GameObject frisbee in spawnedFrisbees)
         {
@@ -170,7 +196,10 @@ public class SniperPuzzleManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) isPlayerNear = true;
+        if (other.CompareTag("Player") && !isPuzzleSolved) 
+        {
+            isPlayerNear = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
