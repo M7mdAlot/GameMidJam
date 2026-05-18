@@ -211,6 +211,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &954239320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7049527157915879929, guid: 489514af4528a55479ee47e7e710926a, type: 3}
+  m_PrefabInstance: {fileID: 1373507051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &954239325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954239320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee67a19078f006e418289e85a6a28133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
 --- !u!1 &1174172515
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +319,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6eca853874267574ba8aeea9db889c3c, type: 3}
+    - target: {fileID: 975058685118896658, guid: 489514af4528a55479ee47e7e710926a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 954239325}
+    - target: {fileID: 975058685118896658, guid: 489514af4528a55479ee47e7e710926a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SceneNext
+      objectReference: {fileID: 0}
+    - target: {fileID: 975058685118896658, guid: 489514af4528a55479ee47e7e710926a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1666111912894814858, guid: 489514af4528a55479ee47e7e710926a, type: 3}
       propertyPath: m_text
       value: You Got Caught!
@@ -393,7 +422,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7049527157915879929, guid: 489514af4528a55479ee47e7e710926a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 954239325}
   m_SourcePrefab: {fileID: 100100000, guid: 489514af4528a55479ee47e7e710926a, type: 3}
 --- !u!1 &2050025018
 GameObject:
